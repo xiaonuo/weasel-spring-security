@@ -13,11 +13,11 @@
 	</parent>
 
 	<dependencies>
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.weasel.spring.mybatis</groupId>
 			<artifactId>weasel-spring-mybatis</artifactId>
 			<version>${project.version}</version>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
