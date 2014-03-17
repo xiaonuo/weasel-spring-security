@@ -1,9 +1,12 @@
 package com.weasel.security.infrastructure.helper;
 
-import org.apache.commons.lang.Validate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+
+import com.weasel.core.helper.DemonPredict;
 
 /**
  * 
@@ -11,18 +14,21 @@ import org.springframework.context.ApplicationContextAware;
  * @time 2013-7-25
  */
 public class SpringBeanHolder implements ApplicationContextAware {
-	
-	private static ApplicationContext context = null;
+
+	private static ApplicationContext context;
+	private final static Logger log = LoggerFactory.getLogger(SpringBeanHolder.class);
 
 	@Override
-	public void setApplicationContext(ApplicationContext context) throws BeansException {
-		Validate.notNull(context);
-		SpringBeanHolder.context = context;
+	public void setApplicationContext(ApplicationContext _context)
+			throws BeansException {
+		DemonPredict.notNull(_context);
+		context = _context;
 	}
 
 	public static ApplicationContext getContext() {
-		if(null == context)
-			throw new RuntimeException("please register the SpringBeanHolder bean to spring...");
+		if (null == context)
+			throw new RuntimeException(
+					"please register the SpringBeanHolder bean to spring...");
 		return context;
 	}
 
@@ -32,7 +38,12 @@ public class SpringBeanHolder implements ApplicationContextAware {
 	 * @return
 	 */
 	public static <T> T getBean(Class<T> clazz) {
-		return getContext().getBean(clazz);
+		try {
+			return getContext().getBean(clazz);
+		} catch (BeansException e) {
+			log.warn("can not found bean " + clazz.getName());
+		}
+		return null;
 	}
 
 	/**
@@ -41,7 +52,12 @@ public class SpringBeanHolder implements ApplicationContextAware {
 	 * @return
 	 */
 	public static Object getBean(String beanName) {
-		return getContext().getBean(beanName);
+		try {
+			return getContext().getBean(beanName);
+		} catch (BeansException e) {
+			log.warn("can not found bean " + beanName);
+		}
+		return null;
 	}
 
 }

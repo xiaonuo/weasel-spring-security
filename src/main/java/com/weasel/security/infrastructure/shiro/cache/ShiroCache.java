@@ -25,7 +25,7 @@ import com.weasel.security.infrastructure.shiro.cache.repository.impl.MemcacheOp
 @SuppressWarnings("unchecked")
 public class ShiroCache<K,V> implements Cache<K, V>  {
 	
-	private CacheRepository cache = SpringBeanHolder.getBean(CacheRepository.class);
+	private CacheRepository cache;
 	
 	private String CACHE_PREFIX;
 	
@@ -34,9 +34,6 @@ public class ShiroCache<K,V> implements Cache<K, V>  {
 	
 	public ShiroCache(String cacheName){
 		CACHE_PREFIX = cacheName+"-";
-		if(null == cache){
-			cache = MemcacheOperations.newSingleton();
-		}
 	}
 	
 	@Override
@@ -119,6 +116,10 @@ public class ShiroCache<K,V> implements Cache<K, V>  {
 	}
 
 	public CacheRepository getCache() {
+		cache = null != cache ? cache : SpringBeanHolder.getBean(CacheRepository.class);
+		if(null == cache){
+			cache = MemcacheOperations.newSingleton();
+		}
 		return cache;
 	}
 

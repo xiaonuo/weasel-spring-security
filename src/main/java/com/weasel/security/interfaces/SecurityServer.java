@@ -42,9 +42,9 @@ import com.weasel.security.infrastructure.helper.ShiroSecurityHelper;
 @Component
 public class SecurityServer {
 
-	@Value("#{requestAnalyse['lock.user.number']}")
+//	@Value("#{requestAnalyse['lock.user.number']}")
 	private int lockUserNumber;
-	@Value("#{requestAnalyse['lock.user.time']}")
+//	@Value("#{requestAnalyse['lock.user.time']}")
 	private int lockUserTime;
 	
 	private final static Logger LOG = LoggerFactory.getLogger(SecurityServer.class);
