@@ -17,8 +17,6 @@ import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.ServletRequestUtils;
 
 import com.weasel.core.helper.DemonPredict;
@@ -39,12 +37,9 @@ import com.weasel.security.infrastructure.helper.ShiroSecurityHelper;
  * @author Dylan
  * @time 2013-8-27
  */
-@Component
 public class SecurityServer {
 
-//	@Value("#{requestAnalyse['lock.user.number']}")
 	private int lockUserNumber;
-//	@Value("#{requestAnalyse['lock.user.time']}")
 	private int lockUserTime;
 	
 	private final static Logger LOG = LoggerFactory.getLogger(SecurityServer.class);
@@ -196,6 +191,22 @@ public class SecurityServer {
 		}
 		e.printStackTrace();
 		return "未知异常，请联系管理员";
+	}
+
+	public int getLockUserNumber() {
+		return lockUserNumber;
+	}
+
+	public void setLockUserNumber(int lockUserNumber) {
+		this.lockUserNumber = lockUserNumber;
+	}
+
+	public int getLockUserTime() {
+		return lockUserTime;
+	}
+
+	public void setLockUserTime(int lockUserTime) {
+		this.lockUserTime = lockUserTime;
 	}
 	
 }
