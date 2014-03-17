@@ -77,7 +77,12 @@
 		</property>
 	</bean>
 	
-	<bean id="springBeanHolder" class="com.weasel.security.infrastructure.helper.SpringBeanHolder" lazy-init="false"/>
+	<bean id="springBeanHolder" class="com.weasel.security.infrastructure.helper.SpringBeanHolder"/>
+	
+	<bean id="securityServer" class="com.weasel.security.interfaces.SecurityServer">
+		<property name="lockUserNumber" value="${lock.user.number}"/>
+		<property name="lockUserTime" value="${lock.user.time}"/>
+	</bean>
 	
 	<!-- Post processor that automatically invokes init() and destroy() methods -->
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
