@@ -5,12 +5,11 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 	 					http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 	 					
-	<bean id="anyRolesAuthorizationFilter" class="com.weasel.spring.security.interfaces.filters.AnyRolesAuthorizationFilter"/>
-	<bean id="anyPermissionsAuthorizationFilter" class="com.weasel.spring.security.interfaces.filters.AnyPermissionsAuthorizationFilter"/>
+	<bean id="anyRolesAuthorizationFilter" class="com.weasel.security.interfaces.filters.AnyRolesAuthorizationFilter"/>
+	<bean id="anyPermissionsAuthorizationFilter" class="com.weasel.security.interfaces.filters.AnyPermissionsAuthorizationFilter"/>
 	
-	<bean id="shiroRealm" class="com.weasel.spring.security.infrastructure.shiro.ShiroRealm"/>
-
-	<bean id="shiroCacheManager" class="com.weasel.spring.security.infrastructure.shiro.cache.ShiroCacheManager"/>
+	<bean id="shiroRealm" class="com.weasel.security.infrastructure.shiro.ShiroRealm"/>
+	<bean id="shiroCacheManager" class="com.weasel.security.infrastructure.shiro.cache.ShiroCacheManager"/>
 	
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="realm" ref="shiroRealm" />
@@ -64,21 +63,21 @@
 	</bean> -->
 	
 	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
-		<property name="staticMethod" value="com.weasel.spring.security.infrastructure.helper.ShiroAuthorizationHelper.setCacheManager" />
+		<property name="staticMethod" value="com.weasel.security.infrastructure.helper.ShiroAuthorizationHelper.setCacheManager" />
 		<property name="arguments" ref="shiroCacheManager"/>
 	</bean>
 	
 	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
-		<property name="staticMethod" value="com.weasel.spring.security.infrastructure.helper.ShiroSecurityHelper.initStaticField" />
+		<property name="staticMethod" value="com.weasel.security.infrastructure.helper.ShiroSecurityHelper.initStaticField" />
 		<property name="arguments">
 			<list>
-				<ref bean="currentUserCacheService"/>
+				<ref bean="currentUserCacheServiceImpl"/>
 				<ref bean="sessionDAO"/>
 			</list>
 		</property>
 	</bean>
 	
-	<bean id="springBeanHolder" class="com.weasel.spring.security.infrastructure.helper.SpringBeanHolder"/>
+	<bean id="springBeanHolder" class="com.weasel.security.infrastructure.helper.SpringBeanHolder" lazy-init="false"/>
 	
 	<!-- Post processor that automatically invokes init() and destroy() methods -->
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
