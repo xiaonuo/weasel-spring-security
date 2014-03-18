@@ -24,33 +24,33 @@ public class User  extends BaseObject<Integer>{
 	/**
 	 * 用户名
 	 */
-	private String username;
+	protected String username;
 	/**
 	 * 密码
 	 */
-    private String password;
+	protected String password;
     
     /**
      * 帐号保持被锁状态的时间，当前时间超过这个时间说明帐号为非锁状态
      */
-    private String lockedTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+	protected String lockedTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
     /**
      * 角色
      */
-    private Set<Role> roles = new HashSet<Role>();
+	protected Set<Role> roles = new HashSet<Role>();
     /**
      * 权限
      */
-    private Set<Auth> auths = new HashSet<Auth>();
+    protected Set<Auth> auths = new HashSet<Auth>();
     
     /**
      * 用于转换role
      */
-    private Map<String,Integer> roleTrans = new HashMap<String,Integer>();
+    protected Map<String,Integer> roleTrans = new HashMap<String,Integer>();
     /**
      * 用于转换auth
      */
-    private Map<String,Integer> authTrans = new HashMap<String,Integer>();
+    protected Map<String,Integer> authTrans = new HashMap<String,Integer>();
 
     public User(){}
     /**
