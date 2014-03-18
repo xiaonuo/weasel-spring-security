@@ -24,21 +24,9 @@ public class MemcacheOperations implements CacheRepository{
 		repository.save(key, entity);
 	}
 
-
-	@Override
-	public <T> void add(String key, T entity) {
-		repository.add(key, entity);
-	}
-
-
 	@Override
 	public void remove(String key) {
 		repository.remove(key);
-	}
-
-	@Override
-	public <T> void update(String key, T entity) {
-		repository.update(key, entity);;
 	}
 
 	@Override

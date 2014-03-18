@@ -21,24 +21,10 @@ public interface CacheRepository {
 	<T> void save(String key,T entity) ;
 	
 	/**
-	 * 为了不同类型的转换，保存的时候以json格式保存到cache，默认12小时后自动从cache删除
-	 * @param key
-	 * @param entity
-	 */
-	<T> void add(String key,T entity);
-	
-	/**
 	 * 根据标识，从memcache中删除
 	 */
 	void remove(String key);
 
-	/**
-	 * 为了不同类型的转换，保存的时候以json格式保存到cache ，默认12小时后自动从cache删除
-	 * @param key
-	 * @param entity
-	 */
-	<T> void update(String key,T entity) ;
-	
 	/**
 	 * 获得cache所有key
 	 * @return
