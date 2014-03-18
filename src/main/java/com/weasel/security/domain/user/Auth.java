@@ -21,8 +21,6 @@ public class Auth extends BaseObject<Integer>{
 	 */
 	private String name;
 	
-	private String fieldName;
-	
 	public Auth(){}
 	
 	public String getCode() {
@@ -41,12 +39,5 @@ public class Auth extends BaseObject<Integer>{
 		this.name = name;
 	}
 
-	public String getFieldName() {
-		return fieldName;
-	}
-
-	public void setFieldName(String fieldName) {
-		this.fieldName = fieldName;
-	}
 	
 }
